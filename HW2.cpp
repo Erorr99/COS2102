@@ -90,22 +90,25 @@ int Point::num;
 
 int main()
 {
-    cout << Point::count() << endl;
     Point p1;
     p1.show();
-    cout << Point::count() << endl;
+    cout << "count " << Point::count() << endl;
     {
         Point p2(2.0, 5.2);
         p2.setName1("B_ONE");
+        p2.setName2("B_TWO");
         p2.show();
         Point p3(4.2, 6.4);
-        p3.setName2("B_TWO");
+        p3.setName1("C_ONE");
+        p3.setName2("C_TWO");
         p3.show();
-        cout << Point::count() << endl;
+        cout << "count " << Point::count() << endl;
     };
-    cout << Point::count() << endl;
+    cout << "count " << Point::count() << endl;
     Point p4(3.0, 4.0);
-    p4.setName1("C_ONE");
+    p4.setName1("D_ONE");
+    p4.setName2("D_TWO");
+    p4.show();
 
     return 0;
 }
