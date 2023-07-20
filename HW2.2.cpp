@@ -21,14 +21,14 @@ public:
     Rectangle(double width)
     {
         num++;
-        this->setWidth(width); // this-> width = width
+        this->width = width;
         this->setLength(0.0);
     }
     Rectangle(double width, double length)
     {
         num++;
-        this->setWidth(width);
-        this->setLength(length);
+        this->width = width;
+        this->length = length;
     }
 
     // set
@@ -101,7 +101,8 @@ int Rectangle::num;
 
 int main()
 {
-    Rectangle r0(4.2, 4.1);
+    cout << "count : " << Rectangle::count() << endl; // แก้เรียก count ก่อน
+    Rectangle r0;
     r0.show();
     Rectangle r1;
     r1.setLength(2.2);
@@ -112,11 +113,11 @@ int main()
     cout << "Area : " << r1.area() << endl;
     cout << "count : " << Rectangle::count() << endl;
     {
-        Rectangle r2(2.3, 2.9);
+        Rectangle r2(2.3); //Rectangle(double width)
         cout << "count : " << Rectangle::count() << endl;
     }
     cout << "count : " << Rectangle::count() << endl;
-    Rectangle r3(7.0, 1.2); //
+    Rectangle r3(7.0, 1.2); //Rectangle(double width, double length)
     cout << "count : " << Rectangle::count() << endl;
 
     return 0;

@@ -56,7 +56,7 @@ public:
     // get
     double getX() { return this->x; };
     double getY() { return this->y; };
-    string getName() { return this->name1; };
+    string getName1() { return this->name1; };
     char *getName2() { return this->name2; }
 
     // set
@@ -90,25 +90,31 @@ int Point::num;
 
 int main()
 {
+    cout << "count " << Point::count() << endl;
     Point p1;
     p1.show();
+    cout << "=================================" << endl;
     cout << "count " << Point::count() << endl;
     {
-        Point p2(2.0, 5.2);
+        Point p2(2.0,4.2);
         p2.setName1("B_ONE");
         p2.setName2("B_TWO");
-        p2.show();
+        cout << "X : " << p2.getX() << endl;
+        cout << "Y : " << p2.getY() << endl;
+        cout << "name 1 :" << p2.getName1() << endl;
+        cout << "name 1" << p2.getName2() << endl;
+        cout << "=================================" << endl;
         Point p3(4.2, 6.4);
-        p3.setName1("C_ONE");
-        p3.setName2("C_TWO");
+        p3.setName1("B_One");
         p3.show();
         cout << "count " << Point::count() << endl;
     };
     cout << "count " << Point::count() << endl;
+    cout << "=================================" << endl;
     Point p4(3.0, 4.0);
-    p4.setName1("D_ONE");
-    p4.setName2("D_TWO");
     p4.show();
+    cout << "=================================" << endl;
+    cout << "count " << Point::count() << endl;
 
     return 0;
 }
