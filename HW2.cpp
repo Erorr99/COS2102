@@ -96,7 +96,7 @@ int main()
     cout << "=================================" << endl;
     cout << "count " << Point::count() << endl;
     {
-        Point p2(2.0,4.2);
+        Point p2(2.0, 4.2);
         p2.setName1("B_ONE");
         p2.setName2("B_TWO");
         cout << "X : " << p2.getX() << endl;
@@ -113,6 +113,9 @@ int main()
     cout << "=================================" << endl;
     Point p4(3.0, 4.0);
     p4.show();
+    cout << "=================================" << endl;
+    Point p5(6.5);
+    p5.show();
     cout << "=================================" << endl;
     cout << "count " << Point::count() << endl;
 
