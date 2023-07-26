@@ -1,88 +1,168 @@
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
-class Vector
+class Rectangle
 {
 private:
-    int size;
-    int *array;
+    double width;
+    double length;
 
 public:
     // constructor
-    Vector()
+    Rectangle()
     {
-        this->array = 0;
-        this->size = 0;
+        this->width = 0.0;
+        this->length = 0.0;
     }
-    Vector(int size)
+    Rectangle(double width)
     {
-        set(size);
+        this->width = width;
+        this->setLength(0.0);
     }
-
-    // destructor
-    ~Vector()
+    Rectangle(double width, double length)
     {
-        delete[] this->array;
+        this->width = width;
+        this->length = length;
     }
 
     // set
-    void set(int size)
-    {
-        this->size = size;
-        this->array = new int[size];
-    }
 
-    void reS(int nS)
+    void setLength(double length)
     {
-        // delete[] this->array;
-        this->array = new int[size];
-        this->size = nS;
+        this->length = length;
+    }
+    void setWidth(double width)
+    {
+        this->width = width;
     }
 
     // get
 
-    int length()
+    double getLength()
     {
-        return this->size;
+        return this->length;
+    }
+    double getWidth()
+    {
+        return this->width;
     }
 
-    // show
-    void setArray()
+    // process
+
+    double perimeter()
     {
-        cout << "Enter your size " << endl;
-        for (int i = 0; i < size; i++)
+        double result;
+        result = (width + length) * 2;
+        return result;
+    }
+    double area()
+    {
+        double rearea;
+        rearea = width * length;
+        return rearea;
+    }
+};
+
+class MyRect
+{
+private:
+    int row, col;
+    Rectangle **array;
+
+    void set(int row, int col)
+    {
+        this->row = row;
+        this->col = col;
+
+        this->array = new Rectangle *[row];
+        for (int i = 0; i < row; i++)
         {
-            cout << "Array [" << i << "] = ";
-            cin >> array[i];
+            array[i] = new Rectangle[col];
+        };
+    }
+
+public:
+    // constructor
+    MyRect()
+    {
+        this->array = 0;
+        this->row = 0;
+        this->col = 0;
+    }
+    MyRect(int row, int col)
+    {
+        set(this->row, this->col);
+    }
+
+    // destuctor
+    ~MyRect()
+    {
+        if (array != 0)
+        {
+            for (int i = 0; i < row; i++)
+            {
+                delete[] array[i];
+            };
+            delete[] array;
+        };
+    }
+
+    // set
+
+    void setRect()
+    {
+        int w, l;
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < col; j++)
+            {
+                cout << "width = " << endl;
+                cin >> w;
+                cout << "length = " << endl;
+                cin >> l;
+                Rectangle r(w, l);
+                this->array[i][j] = r;
+            }
         }
-    };
+    }
+
+    void Re(Rectangle array)
+    {
+    }
+    void reset(int row, int col)
+    {
+        if (row == row && col == col)
+        {
+            return;
+        }
+        MyRect();
+        set(row, col);
+    }
+
+    Rectangle getRect(int row, int col)
+    {
+        return array[row][col];
+        ;
+    }
     void show()
     {
-        cout << "Show your size " << endl;
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < row; i++)
         {
-            cout << "Array[" << i << "] = " << array[i] << endl;
+            for (int j = 0; j < col; j++)
+            {
+                cout << "Rectangle wid= " << array[i] << "hight =" << array[j] << endl;
+            }
         }
-    };
+    }
 };
 
 int main()
 {
-    Vector p;
-    p.set(2);
-    p.setArray();
+    MyRect p(2, 3);
+    p.setRect();
     p.show();
-    cout << "length Array = " << p.length() << endl;
-    cout << "========================================" << endl;
-    Vector s(3);
-    s.setArray();
-    s.show();
-    cout << "length Array = " << s.length() << endl;
-    cout << "========================================" << endl;
-    s.reS(5);
-    s.setArray();
-    s.show();
-    cout << "length Array = " << s.length() << endl;
+
     return 0;
 };
