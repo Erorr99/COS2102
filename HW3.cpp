@@ -146,17 +146,6 @@ public:
         array[row][col].setLength(length);
     }
 
-    // set row and col
-
-    void setRow(int row)
-    {
-        this->row = row;
-    }
-    void setCol(int col)
-    {
-        this->col = col;
-    }
-
     void object(int row, int col, Rectangle &a)
     {
         this->array[row][col] = a;
