@@ -37,7 +37,7 @@ public:
         num++;
         this->x = x;
         this->y = y;
-        this->name1 = "name1";
+        this->name1 = name1;
     };
 
     // get
@@ -76,12 +76,11 @@ public:
 
     Point midpoint(Point &d1, Point &d2)
     {
-        Point mid;
-        this->x = mid.x = (d1.x + d2.x) / 2;
-        this->y = mid.y = (d1.y + d2.y) / 2;
-        name1 = "midpoint";
-        mid.setName1(name1);
-        return mid;
+        // this->x = mid.x = (d1.x + d2.x) / 2;
+        // this->y = mid.y = (d1.y + d2.y) / 2;
+        this->setXY((d1.x + d2.x) / 2, (d1.y + d2.y) / 2);
+        this->name1 = "midpoint";
+        return Point(this->x, this->y, this->name1);
     }
 };
 
