@@ -37,7 +37,7 @@ public:
         num++;
         this->x = x;
         this->y = y;
-        this->name1 = "name1";
+        this->name1 = "d1,d2,midpoint";
     };
 
     // get
@@ -69,16 +69,15 @@ public:
         cout << "name1 = " << this->name1 << endl;
     }
 
-    double dot(Point &p)
+    double dot(Point &d)
     {
-        p.x += 10.5; // ลองบวกค่า
-        p.y += 7.8;  // ลองบวกค่า
-        return this->x * p.x + this->y * p.y;
+        return this->x * d.x + this->y * d.y;
     };
 
-    Point midpoint(Point &p1, Point &p2)
+    Point &midpoint(Point &d1, Point &d2)
     {
-        return Point((p1.x + p2.x) / 2, (p1.y + p2.y) / 2, "midpoint");
+        setXY((d1.x + d2.x) / 2, (d1.y + d2.y) / 2);
+        return;
     }
 };
 
@@ -87,11 +86,12 @@ int Point::num;
 int main()
 {
     cout << "count " << Point::count() << endl;
-    Point p1(2, 3, "s");
-    Point p2(4, 5, "s1");
-    cout << "s.dot(s1)" << p1.dot(p2) << endl;
-    Point mid = p1.midpoint(p1, p2);
-    mid.setName1("p1,p2,midpoi");
+    Point d1(2.0, 3.0, "s");
+    Point d2(4.0, 5.0, "s1");
+    cout << "s.dot(s1) = " << d1.dot(d2) << endl;
+    Point d3;
+    Point mid = d3.midpoint(d1, d2);
+    d3.show();
     mid.show();
 
     // cout << "=================================" << endl;
