@@ -69,10 +69,10 @@ public:
         cout << "name1 = " << this->name1 << endl;
     }
 
-    double dot(Point &d)
-    {
-        return this->x * d.x + this->y * d.y;
-    };
+    // double dot(Point &d)
+    // {
+    //     return this->x * d.x + this->y * d.y;
+    // };
 
     Point midpoint(Point &d1, Point &d2)
     {
@@ -84,6 +84,10 @@ public:
     }
 };
 
+class Circle
+{
+};
+
 int Point::num;
 
 int main()
@@ -91,8 +95,6 @@ int main()
     cout << "count " << Point::count() << endl;
     Point d1(2.0, 3.0, "s");
     Point d2(4.0, 5.0, "s1");
-    cout << "s.dot(s1) = " << d1.dot(d2) << endl;
-
     Point d3;
     Point mid = d3.midpoint(d1, d2);
 
