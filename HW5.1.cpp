@@ -78,35 +78,16 @@ private:
 
 public:
     // constructor
+
     Circle()
     {
         this->radius = 0.0;
     }
 
-    Circle(double radius)
+    Circle(double)
     {
         this->radius = radius;
     }
-
-    Circle(double radius, Point center)
-    {
-        this->radius = radius;
-        this->center = center;
-    }
-
-    Circle(double radius, double x, double y)
-    {
-        this->radius = radius;
-        this->center.setXY(x, y);
-    }
-
-    // Circle(double radius)
-    // {
-    //     this->radius = radius;
-    //     this->radius = (r1.getX() - r2.getX()) + (r1.getY() - r2.getY());
-    // }
-    // {
-    // }
 
     double getRadius()
     {
@@ -129,6 +110,8 @@ public:
     {
         cout << "radius = " << radius << endl;
     }
+
+    friend double circle(Point &p, Circle &c);
 };
 int Point::num;
 
@@ -137,8 +120,6 @@ int main()
     cout << "count " << Point::count() << endl;
     Point d1(2.0, 3.0, "s");
     Point d2(4.0, 5.0, "s1");
-
-    cout << radius << endl;
     Point d3;
     // Point mid = d3.midpoint(d1, d2);
 
@@ -146,7 +127,6 @@ int main()
     d3.show();
 
     cout << "midpoint:" << endl;
-
     // mid.show();
     // cout << "=================================" << endl;
     // cout << "count " << Point::count() << endl;
