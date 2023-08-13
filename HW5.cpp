@@ -128,25 +128,27 @@ public:
         this->center = center;
     }
 
-    bool circlep(Circle &c, Point &p)
-    {
-        double distance = sqrt(pow((p.getX() - c.center.x), 2) + pow((p.y - c.center.getY()), 2));
-        if (distance <= c.radius)
-        {
-            return true;
-            cout << "true" << endl;
-        }
-        else
-        {
-            return false;
-            cout << "false" << endl;
-        }
-    }
     void show()
     {
         cout << "radius = " << radius << endl;
     }
 };
+
+bool circlep(Circle &c, Point &p)
+{
+    double distance = sqrt(pow((p.getX() - c.center.x), 2) + pow((p.getY() - c.center.y), 2));
+    if (distance <= c.radius)
+    {
+        return true;
+        cout << "true" << endl;
+    }
+    else
+    {
+        return false;
+        cout << "false" << endl;
+    }
+}
+
 int Point::num;
 
 int main()
@@ -173,6 +175,7 @@ int main()
     c2.show();
     cout << endl;
 
-    cout << "circlep: " << c2.circlep(c2, q) << endl;
+    // cout << "circlep: " << c2.circlep(c2, q) << endl;
+    cout << "circlep: " << circlep(c2, q) << endl;
     return 0;
 }
