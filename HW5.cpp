@@ -4,6 +4,8 @@
 #include <cmath>
 using namespace std;
 
+class Circle;
+
 class Point
 {
     static int num;
@@ -12,6 +14,7 @@ class Point
 
 public:
     // constructor
+    friend bool circlep(Circle &c, Point &p);
     Point()
     {
         num++;
@@ -78,7 +81,7 @@ private:
     Point center;
 
 public:
-    // constructor
+    friend bool circlep(Circle &c, Point &p);
     Circle()
     {
         this->radius = 0.0;
@@ -127,7 +130,7 @@ public:
 
     bool circlep(Circle &c, Point &p)
     {
-        double distance = sqrt(pow((p.getX() - c.center.getX()), 2) + pow((p.getY() - c.center.getY()), 2));
+        double distance = sqrt(pow((p.getX() - c.center.x), 2) + pow((p.y - c.center.getY()), 2));
         if (distance <= c.radius)
         {
             return true;
@@ -150,8 +153,8 @@ int main()
 {
 
     Point p(5.5, 7.7);
-    Point q(3.7, 8.7);
-    Point r(10.5, 12.8);
+    Point q(3.7, 4.2);
+    Point r(2.5, 1.0);
 
     Circle c;
     c.show();
