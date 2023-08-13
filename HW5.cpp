@@ -1,6 +1,7 @@
 #include <string>
 #include <cstring>
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 class Point
@@ -100,17 +101,18 @@ public:
         this->center.setXY(x, y);
     }
 
-    // Circle(double radius)
-    // {
-    //     this->radius = radius;
-    //     this->radius = (r1.getX() - r2.getX()) + (r1.getY() - r2.getY());
-    // }
-    // {
-    // }
+    ~Circle()
+    {
+    }
 
     double getRadius()
     {
         return this->radius;
+    }
+
+    Point getCenter()
+    {
+        return this->center;
     }
 
     void setRadius(double radius)
@@ -118,13 +120,25 @@ public:
         this->radius = radius;
     }
 
-    // Point midpoint(Point &d1, Point &d2)
-    // {
-    //     this->setXY((d1.x + d2.x) / 2, (d1.y + d2.y) / 2);
-    //     this->name1 = "midpoint";
-    //     return *this;
-    // }
+    void setCenter(Point center)
+    {
+        this->center = center;
+    }
 
+    bool circlep(Circle &c, Point &p)
+    {
+        double distance = sqrt(pow((p.getX() - c.center.getX()), 2) + pow((p.getY() - c.center.getY()), 2));
+        if (distance <= c.radius)
+        {
+            return true;
+            cout << "true" << endl;
+        }
+        else
+        {
+            return false;
+            cout << "false" << endl;
+        }
+    }
     void show()
     {
         cout << "radius = " << radius << endl;
@@ -134,42 +148,28 @@ int Point::num;
 
 int main()
 {
-    cout << "count " << Point::count() << endl;
-    Point d1(2.0, 3.0, "s");
-    Point d2(4.0, 5.0, "s1");
 
-    cout << radius << endl;
-    Point d3;
-    // Point mid = d3.midpoint(d1, d2);
+    Point p(5.5, 7.7);
+    Point q(3.7, 8.7);
+    Point r(10.5, 12.8);
 
-    cout << "d3:" << endl;
-    d3.show();
+    Circle c;
+    c.show();
+    cout << endl;
 
-    cout << "midpoint:" << endl;
+    Circle c2(5.5, p);
+    c2.show();
+    cout << "radius: " << c2.getRadius() << endl;
+    cout << "center: " << endl;
+    c2.getCenter().show();
+    c2.getCenter().getName1();
+    cout << endl;
 
-    // mid.show();
-    // cout << "=================================" << endl;
-    // cout << "count " << Point::count() << endl;
-    // {
-    //     Point p2(2.0, 4.2);
-    //     p2.setName1("B_ONE");
-    //     cout << "Y : " << p2.getY() << endl;
-    //     cout << "name 1 :" << p2.getName1() << endl;
-    //     cout << "=================================" << endl;
-    //     Point p3(4.2, 6.4);
-    //     p3.setName1("B_One");
-    //     p3.show();
-    //     cout << "count " << Point::count() << endl;
-    // };
-    // cout << "count " << Point::count() << endl;
-    // cout << "=================================" << endl;
-    // Point p4(3.0, 4.0);
-    // p4.show();
-    // cout << "=================================" << endl;
-    // Point p5(6.5);
-    // p5.show();
-    // cout << "=================================" << endl;
-    // cout << "count " << Point::count() << endl;
+    c2.setRadius(5.5);
+    c2.setCenter(p);
+    c2.show();
+    cout << endl;
 
+    cout << "circlep: " << c2.circlep(c2, q) << endl;
     return 0;
 }
