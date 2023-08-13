@@ -140,12 +140,10 @@ bool circlep(Circle &c, Point &p)
     if (distance <= c.radius)
     {
         return true;
-        cout << "true" << endl;
     }
     else
     {
         return false;
-        cout << "false" << endl;
     }
 }
 
