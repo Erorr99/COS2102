@@ -136,7 +136,7 @@ public:
 
 bool circlep(Circle &c, Point &p)
 {
-    double distance = sqrt(pow((p.getX() - c.center.x), 2) + pow((p.getY() - c.center.y), 2));
+    double distance = sqrt(pow((p.x - c.center.x), 2) + pow((p.x - c.center.y), 2));
     if (distance <= c.radius)
     {
         return true;
