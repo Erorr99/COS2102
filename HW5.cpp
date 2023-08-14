@@ -81,7 +81,7 @@ private:
     Point center;
 
 public:
-    friend bool circlep(Circle &c, Point &p);
+    // friend bool circlep(Circle &c, Point &p);
     Circle()
     {
         this->radius = 0.0;
@@ -136,8 +136,8 @@ public:
 
 bool circlep(Circle &c, Point &p)
 {
-    double distance = sqrt(pow((p.x - c.center.x), 2) + pow((p.x - c.center.y), 2));
-    if (distance <= c.radius)
+    double distance = sqrt(pow((p.x - c.getCenter().x), 2) + pow((p.x - c.getCenter().y), 2));
+    if (distance <= c.getRadius())
     {
         return true;
     }
