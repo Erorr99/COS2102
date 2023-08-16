@@ -43,7 +43,7 @@ public:
     }
     void printDate()
     {
-        cout << day << "/" << month << "/" << year << endl;
+        cout << "Bith : Day " << day << " Month : " << month << " Year : " << year << endl;
     }
 };
 
@@ -100,7 +100,7 @@ public:
 
     void printAddress()
     {
-        cout << add << ", " << city << ", " << zipcode << endl;
+        cout << "Address : " << add << " City : " << city << " Zipcode : " << zipcode << endl;
     }
 };
 
@@ -124,11 +124,32 @@ public:
         this->dates = dates;
         this->add = add;
     }
-    void set(string fristName, string lastName, Date &dates, Address &add)
+
+    ~Person()
+    {
+        cout << fristName << "bye" << endl;
+    }
+    // void setfirst(string fristName, string lastName, Date &dates, Address &add)
+    // {
+    //     this->fristName = fristName;
+    //     this->lastName = lastName;
+    //     this->dates = dates;
+    //     this->add = add;
+    // }
+    void setfirst(string fristName)
     {
         this->fristName = fristName;
+    }
+    void setlast(string lastName)
+    {
         this->lastName = lastName;
+    }
+    void setdate(Date &dates)
+    {
         this->dates = dates;
+    }
+    void setadd(Address &add)
+    {
         this->add = add;
     }
     string getFristName()
@@ -149,7 +170,7 @@ public:
     }
     void show()
     {
-        cout << fristName << " " << lastName << ", ";
+        cout << "Firstname : " << fristName << " LastName : " << lastName << endl;
         dates.printDate();
         add.printAddress();
     }
@@ -171,6 +192,10 @@ public:
         this->studentID = studentID;
         this->group = group;
     }
+    ~Student()
+    {
+        cout << "Student bye " << getFristName() << endl;
+    }
     void set(string studentID, string group)
     {
         this->studentID = studentID;
@@ -187,15 +212,66 @@ public:
     void printStudent()
     {
         Person::show();
-        cout << studentID << ", " << group << endl;
+        cout << "ID : " << studentID << " Group : " << group << endl;
+    }
+};
+
+class Teacher : public Person
+{
+private:
+    string TeacherID, faculty;
+
+public:
+    Teacher()
+    {
+        TeacherID = "";
+        faculty = "";
+    }
+    Teacher(string TeacherID, string faculty, string firstname, string lastname, Date dates, Address add) //: Person(firstname, lastname, dates, add)
+    {
+        this->TeacherID = TeacherID;
+        this->faculty = faculty;
+        this->setfirst(firstname);
+        this->setlast(lastname);
+        this->setdate(dates);
+        this->setadd(add);
+    }
+    ~Teacher()
+    {
+        cout << "Teacher bye " << getFristName() << endl;
+    }
+    void setTeacher(string TeacherID, string faculty)
+    {
+        this->TeacherID = TeacherID;
+        this->faculty = faculty;
+    }
+
+    string getTeacherID()
+    {
+        return this->TeacherID;
+    }
+    string getFaculty()
+    {
+        return this->faculty;
+    }
+
+    void printTeacher()
+    {
+        Person::show();
+        cout << "TeacherID :" << TeacherID << " Faculty : " << faculty << endl;
     }
 };
 
 int main()
 {
-    Student s1("B20DCCN001", "D17CQCN01-B", "Nguyen", "Van A", Date(1, 1, 2000), Address("123 Nguyen Trai", "Ha Noi", "100000"));
-    s1.show();
-    cout << "something" << endl;
+    cout << "Student" << endl;
+    Student s1("B20DCCN001", "Comsic", "Nulgan", "tens", Date(1, 1, 2000), Address("123/52", "Hanoi", "99999"));
+    s1.printStudent();
+    cout << endl;
+
+    cout << "Teacher" << endl;
+    Teacher t1("T202GFW215", "COS", "Rainy", "mars", Date(2, 5, 1980), Address("412/12", "bangkok", "10170"));
+    t1.printTeacher();
 
     return 0;
 };
