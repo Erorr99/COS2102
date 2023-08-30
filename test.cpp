@@ -1,86 +1,94 @@
-#include "iostream"
-
+#include <iostream>
 using namespace std;
+class A
+{
+    int a;
 
-// factorial 5
-// 5*4*3*2*1
-// with while
+public:
+    A()
+    {
+        a = 1;
+        cout << "A" << endl;
+    }
+    A(int i)
+    {
+        a = i + 2;
+        cout << "AA" << endl;
+    }
+    ~A()
+    {
+        cout << "bye a " << a << endl;
+    }
+    int subscript(int n)
+    {
+        cout << "a[]" << endl;
+        for (int i = 1; i <= n; i++)
+            a += 2;
+        return a;
+    }
+    int get() { return a; }
+};
+class B : public A
+{
+    int b;
 
+public:
+    B()
+    {
+        b = 2;
+        cout << "B" << endl;
+    }
+    B(int i, int j) : A(j)
+    {
+        b = i;
+        cout << "BB" << endl;
+    }
+    ~B()
+    {
+        cout << "bye b " << b << endl;
+    }
+
+    B &subscript(int n)
+    {
+        cout << "b[]" << endl;
+        A::subscript(n);
+        for (int i = 1; i <= n; i++)
+            b *= 2;
+        return *this;
+    }
+    int get() { return b; }
+};
+class C
+{
+    B bb;
+
+public:
+    C()
+    {
+        bb.subscript(2);
+        cout << "C" << endl;
+    }
+    C(int i)
+    {
+        bb.subscript(i);
+        cout << "CC" << endl;
+    }
+    ~C()
+    {
+        cout << "bye c " << endl;
+    }
+    C subscript(int n)
+    {
+        cout << "c[]" << endl;
+        return C(n);
+    }
+    B get() { return bb; }
+};
 int main()
 {
-    // int n;
-    // long result = 1;
-    // cout << "Enter a number: ";
-    // cin >> n;
-    // while (n > 0)
-    // {
-    //     result *= n; //
-    //     n--;
-    // }
-    // cout << "Result: " << result << endl;
-
-    // do while
-    //  int n;
-
-    // int n;
-    // long result = 1;
-    // cout << "Enter a number: ";
-    // cin >> n;
-    // do
-    // {
-    //     result *= n; //
-    //     n--;
-    // } while (n > 0);
-    // cout << "Result: " << result << endl;
-
-    // for
-
-    // int n;
-    // 5*4*3*2*1
-
-    // int n;
-    // long result = 1;
-    // cout << "Enter a number: ";
-    // cin >> n;
-    // for (int i = n; i >= 1; i--)
-    // {
-    //     result *= i;
-    // }
-    // cout << "Result: " << result << endl;
-
-    // if
-
-    // int n;
-
-    // int n;
-    // long result = 1;
-    // cout << "Enter a number: ";
-    // cin >> n;
-    // if (n == 0 || n == 1)
-    // {
-    //     cout << "Result: " << result << endl;
-    // }
-    // else
-    // {
-    //     for (int i = n; i >= 1; i--)
-    //     {
-    //         result *= i;
-    //     }
-    //     cout << "Result: " << result << endl;
-    // }
-
-    // post order 22 23 46 42 74 67 50
-    // with node* root
-
-    void postOrder(node * root)
-    {
-        if (root == NULL)
-        {
-            return;
-        }
-        postOrder(root->left);
-        postOrder(root->right);
-        cout << root->data << " ";
-    }
-    return 0;
+    C c1;
+    C c2(3);
+    B b(1, 2);
+    b = c1.subscript(1).get();
+    cout << "---end---" << endl;
 }

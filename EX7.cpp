@@ -107,19 +107,19 @@ public:
 class Person
 {
 private:
-    string firstName, lastName;
+    string fristName, lastName;
     Date dates;
     Address add;
 
 public:
     Person()
     {
-        firstName = "";
+        fristName = "";
         lastName = "";
     }
     Person(string fristName, string lastName, Date &dates, Address &add)
     {
-        this->firstName = fristName;
+        this->fristName = fristName;
         this->lastName = lastName;
         this->dates = dates;
         this->add = add;
@@ -127,34 +127,34 @@ public:
 
     ~Person()
     {
-        cout << firstName << "bye" << endl;
+        cout << fristName << "bye" << endl;
     }
-    // void setfirst(string fristName, string lastName, Date &dates, Address &add)
-    // {
-    //     this->fristName = fristName;
-    //     this->lastName = lastName;
-    //     this->dates = dates;
-    //     this->add = add;
-    // }
-    void setfirst(string fristName)
+    void setfirst(string fristName, string lastName, Date &dates, Address &add)
     {
-        this->firstName = fristName;
-    }
-    void setlast(string lastName)
-    {
+        this->fristName = fristName;
         this->lastName = lastName;
-    }
-    void setdate(Date &dates)
-    {
         this->dates = dates;
-    }
-    void setadd(Address &add)
-    {
         this->add = add;
     }
+    // void setfirst(string fristName)
+    // {
+    //     this->fristName = fristName;
+    // }
+    // void setlast(string lastName)
+    // {
+    //     this->lastName = lastName;
+    // }
+    // void setdate(Date &dates)
+    // {
+    //     this->dates = dates;
+    // }
+    // void setadd(Address &add)
+    // {
+    //     this->add = add;
+    // }
     string getFristName()
     {
-        return this->firstName;
+        return this->fristName;
     }
     string getLastName()
     {
@@ -170,13 +170,13 @@ public:
     }
     void show()
     {
-        cout << "Firstname : " << firstName << " LastName : " << lastName << endl;
+        cout << "Firstname : " << fristName << " LastName : " << lastName << endl;
         dates.printDate();
         add.printAddress();
     }
 };
 
-class Student : public Person
+class Student : virtual public Person
 {
 private:
     string studentID, group;
@@ -187,6 +187,7 @@ public:
         studentID = "";
         group = "";
     }
+    Student(string studentID, string group) {}
     Student(string studentID, string group, string firstname, string lastname, Date dates, Address add) : Person(firstname, lastname, dates, add)
     {
         this->studentID = studentID;
@@ -216,7 +217,7 @@ public:
     }
 };
 
-class Teacher : public Person
+class Teacher : virtual public Person
 {
 private:
     string TeacherID, faculty;
@@ -227,14 +228,20 @@ public:
         TeacherID = "";
         faculty = "";
     }
-    Teacher(string TeacherID, string faculty, string firstname, string lastname, Date dates, Address add) //: Person(firstname, lastname, dates, add)
+    Teacher(string TeacherID, string faculty)
     {
         this->TeacherID = TeacherID;
         this->faculty = faculty;
-        this->setfirst(firstname);
-        this->setlast(lastname);
-        this->setdate(dates);
-        this->setadd(add);
+    }
+    Teacher(string TeacherID, string faculty, string fristName, string lastName, Date dates, Address add) : Person(fristName, lastName, dates, add)
+    {
+        this->TeacherID = TeacherID;
+        this->faculty = faculty;
+        // this->setfirst(firstname);
+        // this->setlast(lastname);
+        // this->setdate(dates);
+        // this->setadd(add);
+        // Person::setfirst(fristName, lastName, dates, add);
     }
     ~Teacher()
     {
@@ -262,16 +269,71 @@ public:
     }
 };
 
+class TeachingAssistant : public Student, public Teacher
+{
+private:
+    string salary;
+    string certificate_id;
+
+public:
+    TeachingAssistant()
+    {
+        this->salary = "";
+        this->certificate_id = "";
+    }
+    TeachingAssistant(string salary, string certificate_id, string TeacherID, string faculty, string studentID, string group, string fristName, string lastName, Date &dates, Address &add) : Teacher(TeacherID, faculty, fristName, lastName, dates, add), Student(studentID, group, fristName, lastName, dates, add), Person(fristName, lastName, dates, add)
+    {
+
+        this->salary = salary;
+        this->certificate_id = certificate_id;
+    }
+
+    ~TeachingAssistant()
+    {
+        cout << "bye TeachingAssisyant" << endl;
+    }
+
+    void setTeachingAssistant(string salary, string certificate_id)
+    {
+        this->salary = salary;
+        this->certificate_id = certificate_id;
+    }
+
+    string getSalary()
+    {
+        return this->salary;
+    }
+
+    string getCertificate_id()
+    {
+        return this->certificate_id;
+    }
+
+    void printTeachingAssistant()
+    {
+        Person::show();
+        cout << "ID : " << getStudentID() << " Group : " << getGroup() << endl;
+        cout << "TeacherID :" << getTeacherID() << " Faculty : " << getFaculty() << endl;
+        cout << "Salary : " << salary << "bath Certificate_id : " << certificate_id << endl;
+    }
+};
+
 int main()
 {
-    cout << "Student" << endl;
-    Student s1("B20DCCN001", "Comsic", "Nulgan", "tens", Date(1, 1, 2000), Address("123/52", "Hanoi", "99999"));
-    s1.printStudent();
-    cout << endl;
+    // cout << "Student" << endl;
+    // Student s1("B20DCCN001", "Comsic", "Nulgan", "tens", Date(1, 1, 2000), Address("123/52", "Hanoi", "99999"));
+    // s1.printStudent();
+    // cout << endl;
 
-    cout << "Teacher" << endl;
-    Teacher t1("T202GFW215", "COS", "Rainy", "mars", Date(2, 5, 1980), Address("412/12", "bangkok", "10170"));
-    t1.printTeacher();
+    // cout << "Teacher" << endl;
+    // Teacher t1("T202GFW215", "COS", "Rainy", "mars", Date(2, 5, 1980), Address("412/12", "bangkok", "10170"));
+    // t1.printTeacher();
+
+    cout << "TeachingAssistant" << endl;
+    Date dates(12, 4, 1990);
+    Address add("123/52", "bangkok", "10520");
+    TeachingAssistant ta1("30000", "COS", "T202GFW215", "COS", "B20DCCN001", "Comsic", "rakdee", "makmak", dates, add);
+    ta1.printTeachingAssistant();
 
     return 0;
 };
