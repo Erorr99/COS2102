@@ -107,19 +107,19 @@ public:
 class Person
 {
 private:
-    string firstName, lastName;
+    string fristName, lastName;
     Date dates;
     Address add;
 
 public:
     Person()
     {
-        firstName = "";
+        fristName = "";
         lastName = "";
     }
     Person(string fristName, string lastName, Date &dates, Address &add)
     {
-        this->firstName = fristName;
+        this->fristName = fristName;
         this->lastName = lastName;
         this->dates = dates;
         this->add = add;
@@ -127,7 +127,7 @@ public:
 
     ~Person()
     {
-        cout << firstName << "bye" << endl;
+        cout << fristName << "bye" << endl;
     }
     // void setfirst(string fristName, string lastName, Date &dates, Address &add)
     // {
@@ -138,7 +138,7 @@ public:
     // }
     void setfirst(string fristName)
     {
-        this->firstName = fristName;
+        this->fristName = fristName;
     }
     void setlast(string lastName)
     {
@@ -154,7 +154,7 @@ public:
     }
     string getFristName()
     {
-        return this->firstName;
+        return this->fristName;
     }
     string getLastName()
     {
@@ -170,7 +170,7 @@ public:
     }
     void show()
     {
-        cout << "Firstname : " << firstName << " LastName : " << lastName << endl;
+        cout << "Firstname : " << fristName << " LastName : " << lastName << endl;
         dates.printDate();
         add.printAddress();
     }

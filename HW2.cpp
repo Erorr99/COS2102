@@ -76,16 +76,10 @@ public:
 
     Point midpoint(Point &d1, Point &d2)
     {
-        // this->x = mid.x = (d1.x + d2.x) / 2;
-        // this->y = mid.y = (d1.y + d2.y) / 2;
         this->setXY((d1.x + d2.x) / 2, (d1.y + d2.y) / 2);
         this->name1 = "midpoint";
         return Point(this->x, this->y, this->name1);
     }
-};
-
-class Circle
-{
 };
 
 int Point::num;

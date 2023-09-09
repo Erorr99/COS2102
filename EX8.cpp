@@ -31,31 +31,32 @@ public:
         return *this;
     }
 
-    Rectangle operator++()
+    Rectangle operator++(int)
     {
-        return Rectanglea(++length);
+        return Rectangle(++length);
     }
-    friend Rectangle operator--(int)
+    friend Rectangle operator--(Rectangle &r1)
     {
-        --width;
-        return *this;
+        r1.width;
+        return r1;
     }
-    friend Rectangle operator--(int)
+    friend Rectangle operator--(Rectangle &r1, int)
     {
-        return Rectangle(--length);
+        r1.length--;
+        return r1;
     }
 
-    void operator[](int index)
-    {
-        if (index == 0)
-        {
-            cout << "Width : " << width << endl;
-        }
-        else if (index == 1)
-        {
-            cout << "Length : " << length << endl;
-        }
-    }
+    // void operator[](int index)
+    // {
+    //     if (index == 0)
+    //     {
+    //         cout << "Width : " << width << endl;
+    //     }
+    //     else if (index == 1)
+    //     {
+    //         cout << "Length : " << length << endl;
+    //     }
+    // }
 
     void operator()(int index)
     {
@@ -68,7 +69,6 @@ public:
             cout << "Length : " << length << endl;
         }
     }
-    // set
 
     void operator()(double width, double length)
     {
@@ -87,6 +87,64 @@ public:
         this->show();
     }
 
+    bool Rectangle::operator<(Rectangle &a)
+    {
+        if (this->area() < a.area())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    bool Rectangle::operator>(Rectangle &a)
+    {
+        if (this->area() > a.area())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    bool Rectangle::operator<=(Rectangle &a)
+    {
+        if (this->area() <= a.area())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    bool Rectangle::operator>=(Rectangle &a)
+    {
+        if (this->area() >= a.area())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    bool Rectangle::operator!=(Rectangle &a)
+    {
+        if (this->area() != a.area())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     void setLength(double length)
     {
         this->length = length;
@@ -96,8 +154,6 @@ public:
         this->width = width;
     }
 
-    // get
-
     double getLength()
     {
         return this->length;
@@ -106,8 +162,6 @@ public:
     {
         return this->width;
     }
-
-    // process
 
     double perimeter()
     {
@@ -129,20 +183,14 @@ public:
     }
     void show()
     {
-        cout << "╔═══════════════╦════════════════════════╗" << endl;
-        cout << "║    Length     ║" << setw(12) << this->length << "\t\t\t\b\b\b\b\b\b\b\b ║" << endl;
-        cout << "╠═══════════════╬════════════════════════╣" << endl;
-        cout << "║    Width      ║" << setw(12) << this->width << "\t\t\t\b\b\b\b\b\b\b\b ║" << endl;
-        cout << "╠═══════════════╬════════════════════════╣" << endl;
-        cout << "║   Perimeter   ║" << setw(12) << perimeter() << "\t\t\t\b\b\b\b\b\b\b\b ║" << endl;
-        cout << "╠═══════════════╬════════════════════════╣" << endl;
-        cout << "║     Area      ║" << setw(12) << area() << "\t\t\t\b\b\b\b\b\b\b\b ║" << endl;
-        cout << "╚═══════════════╩════════════════════════╝" << endl;
+        cout << "Width : " << width << endl;
+        cout << "Length : " << length << endl;
+        cout << "Perimeter : " << perimeter() << endl;
+        cout << "Area : " << area() << endl;
     }
-}
+};
 
-int
-main()
+int main()
 {
     Rectangle r1(2.0, 3.0);
     r1.show();
@@ -164,13 +212,15 @@ main()
     r1(1);
     cout << endl;
 
-    r1++;
-    r1.show();
-    cout << endl;
-
-    r1--;
-    r1.show();
-    cout << endl;
+    Rectangle r2(1, 1), r3(2, 2);
+    if (r2 < r3)
+    {
+        cout << "r2 < r3" << endl;
+    }
+    else
+    {
+        cout << "r2 > r3" << endl;
+    }
 
     return 0;
 }
